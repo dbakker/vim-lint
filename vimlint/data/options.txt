@@ -2,6 +2,7 @@ aleph:al number
 allowrevins:ari boolean
 altkeymap:akm boolean
 ambiwidth:ambw string
+antialias boolean
 antialias:anti boolean
 arabic:arab boolean
 arabicshape:arshape boolean
@@ -112,6 +113,8 @@ formatlistpat:flp string
 formatoptions:fo string
 formatprg:fp string
 fsync:fs boolean
+fullscreen boolean
+fuoptions string
 gdefault:gd boolean
 grepformat:gfm string
 grepprg:gp string
@@ -170,6 +173,7 @@ list boolean
 listchars:lcs string
 loadplugins:lpl boolean
 macatsui boolean
+macmeta string
 magic boolean
 makeef:mef string
 makeprg:mp string
@@ -424,6 +428,7 @@ titleold string
 titlestring string
 toolbar:tb string
 toolbariconsize:tbis string
+transparency number
 ttimeout boolean
 ttimeoutlen:ttm number
 ttybuiltin:tbi boolean

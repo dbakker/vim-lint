@@ -254,6 +254,8 @@
 :lw[indow]
 :m[ove]
 :ma[rk]
+:maca[ction]
+:macm[enu]
 :mak[e]
 :map
 :mapc[lear]
