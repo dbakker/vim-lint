@@ -1,15 +1,16 @@
+#! /usr/bin/env python
 # Vim Lint
 # Author:       Daan Bakker
 # HomePage:     http://github.com/dbakker/vim-lint
 # Version:      1.0
 
-import re
-import ex
-import excontrol
-import exmap
+import vimlint.ex as ex
+import vimlint.excontrol as excontrol
+import vimlint.exmap as exmap
+import vimlint.options as options
 import argparse
-import options
 import os.path
+import re
 
 
 line_checkers = [exmap.check, ex.check_exists, options.check_cmd, ex.check_semi]
