@@ -71,6 +71,7 @@ def get_plain(lines):
     cmd = linecmd(joined_lines)
     mapping = cmd and 'map' in cmd and 'unmap' not in cmd
     splitbars = cmd not in barred_ex and not mapping
+    firstword = ''
 
     for i in range(0, len(line)):
         ch = line[i]
@@ -101,10 +102,10 @@ def get_plain(lines):
             if quoted:
                 quoted = None
 
-            elif (lastnonspace == '' or re.match('[a-zA-Z0-9\]})\'";/]', lastnonspace)) \
-                    and last_exword not in quoted_ex \
-                    and not mapping:
-
+            elif ((lastnonspace == '' or re.match('[a-zA-Z0-9\]})\'";/]', lastnonspace))
+                    and last_exword not in quoted_ex
+                    and not mapping) or \
+                    (expand(firstword) and expand(firstword).startswith('set') and lastch != '='):
                 comment = True
                 ch = ' '
 
@@ -117,10 +118,13 @@ def get_plain(lines):
                 for j in range(0, i):
                     line[j] = ' '
                 ch = ' '
+                firstword = ''
 
         if ch not in [" ", "\t"]:
             lastnonspace = ch
             if lastch in [" ", "\t", "|", ":", "%"]:
+                if not firstword:
+                    firstword = lastword
                 lastword = ''
             lastword += ch
 
