@@ -173,7 +173,7 @@ list boolean
 listchars:lcs string
 loadplugins:lpl boolean
 macatsui boolean
-macmeta string
+macmeta boolean
 magic boolean
 makeef:mef string
 makeprg:mp string
