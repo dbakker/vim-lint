@@ -17,6 +17,7 @@ file_checkers = [excontrol.check]
 
 
 def lint(lines):
+    lines = map(lambda x: x.rstrip("\n\r"), lines) + ['']
     result = []
 
     commands = list(ex.read_ex_commands(lines))
@@ -44,6 +45,14 @@ def lint(lines):
         if message.col is None:
             indent = re.match('(\s*)', lines[message.line - 1]).group(1)
             message.col = len(indent) + 1
+        else:
+            while message.col > len(lines[message.line - 1]) and message.line + 1 < len(lines):
+                message.col -= len(lines[message.line - 1])
+                message.line += 1
+                continuation = re.match('(\s*\\\\)', lines[message.line - 1])
+                if not continuation:
+                    break
+                message.col += len(continuation.group(1))
 
     result = sorted(result, key=lambda x: x.line)
 
@@ -60,7 +69,7 @@ if __name__ == '__main__':
             continue
 
         with open(filename) as f:
-            lines = map(lambda x: x.rstrip("\n\r"), f.readlines()) + ['']
+            lines = f.readlines()
             res = lint(lines)
             res = map(lambda x: '%s:%s:%s: %s: %s' % (filename, x.line, x.col, 'Warning' if x.warning else 'Error', x.msg), res)
             for r in res:
