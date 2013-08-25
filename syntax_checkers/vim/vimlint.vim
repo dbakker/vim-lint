@@ -6,7 +6,7 @@ let g:loaded_syntastic_vim_vimlint_checker = 1
 function! s:get_vimlint()
     if !exists('s:vimlint_exe')
         let paths = substitute(escape(&runtimepath, ' '), '\(,\|$\)', '/**\1', 'g')
-        let s:vimlint_exe = findfile('vimlint.py', paths)
+        let s:vimlint_exe = fnamemodify(findfile('vimlint.py', paths), ':p')
     endif
     return s:vimlint_exe
 endfunction
