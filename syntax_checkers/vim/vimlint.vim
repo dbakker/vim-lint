@@ -19,8 +19,10 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_vim_vimlint_GetLocList()
+  let python = executable('python2') ? 'python2' : 'python'
+
   let makeprg = syntastic#makeprg#build({
-        \ 'exe': 'python '.s:get_vimlint(),
+        \ 'exe': python.' '.s:get_vimlint(),
         \ 'filetype': 'vim',
         \ 'subchecker': 'vimlint' })
 
