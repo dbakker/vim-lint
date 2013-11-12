@@ -11,22 +11,22 @@ function! s:get_vimlint()
     return s:vimlint_exe
 endfunction
 
-function! SyntaxCheckers_vim_vimlint_IsAvailable()
+function! SyntaxCheckers_vim_vimlint_IsAvailable() dict
   return executable('python') && filereadable(s:get_vimlint())
 endfunction
 
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! SyntaxCheckers_vim_vimlint_GetLocList()
+function! SyntaxCheckers_vim_vimlint_GetLocList() dict
   let python = executable('python2') ? 'python2' : 'python'
 
-  let makeprg = syntastic#makeprg#build({
+  let makeprg = self.makeprgBuild({
         \ 'exe': python.' '.s:get_vimlint(),
         \ 'filetype': 'vim',
         \ 'subchecker': 'vimlint' })
 
-  let errorformat = 
+  let errorformat =
         \ '%f:%l:%c: %trror: %m,' .
         \ '%f:%l:%c: %tarning: %m'
 
