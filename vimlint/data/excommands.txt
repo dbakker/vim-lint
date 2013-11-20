@@ -336,7 +336,7 @@
 :pyf[ile]
 :q[uit]
 :qa[ll]
-:quit
+:quita[ll]
 :r[ead]
 :rec[over]
 :red[o]
@@ -511,6 +511,7 @@
 :x[it]
 :xa[ll]
 :xm[ap]
+:xmapc[lear]
 :xme[nu]
 :xn[oremap]
 :xnoreme[nu]
