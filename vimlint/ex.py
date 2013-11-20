@@ -166,14 +166,14 @@ def expand(excmd):
                     exaliases[current] = complete
                     current += ch
 
-    return exaliases.get(excmd.lower(), None)
+    return exaliases.get(excmd, None)
 
 
 def linecmd(line):
     try:
-        cmd = re.match('\s*:*%?([a-z]+|!)', line).group(1)
+        cmd = re.match('\s*:*%?(([a-z][a-zA-Z]*)|!)', line).group(1)
         expanded = expand(cmd)
-        return expanded if expanded else cmd.lower()
+        return expanded if expanded else cmd
     except:
         pass
 
