@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Vim Lint
 # Author:       Daan Bakker
 # HomePage:     http://github.com/dbakker/vim-lint
